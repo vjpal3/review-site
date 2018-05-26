@@ -1,0 +1,20 @@
+<h2>Item Details</h2>
+<p>
+  <strong>Name:</strong> <%= @item.name %>
+</p>
+<p>
+  <strong>Description:</strong> <%= @item.description %>
+</p>
+<p>
+  <strong>Website:</strong> <%= @item.item_website %>
+</p>
+
+<p>
+  <% if user_signed_in? %>
+    <%= link_to "Update Item", edit_item_path(@item) %> |
+    <%= link_to 'Delete Item', item_path(@item),
+                  method: :delete,
+                  data: { confirm: 'Are you sure?' } %> |
+  <% end %>
+  <%= link_to "View All Items", items_path %>
+</p>

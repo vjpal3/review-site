@@ -1,0 +1,34 @@
+<%= form_with model: @item, local: true do |f| %>
+  <% if @item.errors.any? %>
+    <div class="error_explanation">
+      <h4>
+        <%= pluralize(@item.errors.count, "error") %> prohibited
+        this item from being posted:
+      </h4>
+      <ul>
+        <% @item.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <p>
+    <%= f.label :name %> <br>
+    <%= f.text_field :name %>
+  </p>
+
+  <p>
+    <%= f.label :description %><br>
+    <%= f.text_area :description %>
+  </p>
+
+  <p>
+    <%= f.label :item_website, "Item Website" %> <br>
+    <%= f.text_field :item_website %>
+  </p>
+
+  <p>
+    <%= f.submit @item.persisted? ? "Update Item" : "Add Item" %>
+  </p>
+<% end %>
