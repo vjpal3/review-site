@@ -1,0 +1,8 @@
+<h2>Update Item Information</h2>
+<%= render "form" %>
+<p>
+  <%= button_to 'Delete Item', item_path(@item),
+                method: :delete,
+                data: { confirm: 'Are you sure?' } %>
+  <%= button_to "View All Items", items_path, method: :get %>
+</p>

@@ -32,4 +32,3 @@ feature "User signs out successfully", %Q{
     expect(page).to_not have_content('Sign Out')
   end
 end
-  
