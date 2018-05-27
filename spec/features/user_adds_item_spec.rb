@@ -31,7 +31,7 @@ feature "User adds an item", %Q{
 
   scenario "authenticated user successfully adds an item" do
     visit "/"
-    find_link("Add Item to Review").click
+    find_link("Add Item").click
     expect(page).to have_content("Add Item to Review")
     fill_in "Name", with: "Lenovo Yoga 720"
     fill_in "Description", with: "#{item.description}"
@@ -47,7 +47,7 @@ feature "User adds an item", %Q{
 
   scenario 'authenticated user fails to add an item' do
     visit "/"
-    find_link("Add Item to Review").click
+    find_link("Add Item").click
     find_button("Add Item").click
     expect(page).to have_content("errors prohibited this item from being posted")
     expect(page).to have_content("Name can't be blank")
@@ -59,7 +59,7 @@ feature "User adds an item", %Q{
 
   scenario 'authenticated user fails to add an item with same name' do
     visit "/"
-    find_link("Add Item to Review").click
+    find_link("Add Item").click
 
     fill_in "Name", with: "#{item.name}"
     fill_in "Description", with: "#{item.description}"

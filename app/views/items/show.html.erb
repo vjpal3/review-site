@@ -1,6 +1,7 @@
 <h2>Item Details</h2>
 <p>
-  <strong>Name:</strong> <%= @item.name %>
+  <strong>Name:</strong><%= @item.name %>
+
 </p>
 <p>
   <strong>Description:</strong> <%= @item.description %>
@@ -17,4 +18,14 @@
                   data: { confirm: 'Are you sure?' } %> |
   <% end %>
   <%= link_to "View All Items", items_path %>
+  <br>
+  <p>
+    <!-- This line renders the code from _review.html.erb -->
+    <%= render @item.reviews.order(updated_at: :desc) %>
+  </p>
+  <% if user_signed_in? %>
+    <h4>Review this Item:</h4>
+    <%= render '/reviews/form' %>
+  <% end %>
+
 </p>

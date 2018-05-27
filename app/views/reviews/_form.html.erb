@@ -1,0 +1,25 @@
+<%= form_for [ @item, @review ] do |f| %>
+  <% if @review.errors.any? %>
+    <div id="error_explanation">
+      <h6>
+        <%= pluralize(@review.errors.count, "error") %> prohibited
+        this review from being posted:
+      </h6>
+      <ul>
+        <% @review.errors.full_messages.each do |msg| %>
+           <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <p>
+    <%= f.label :rating %>
+    <%= f.select :rating, options_for_select([ ["Select Rating", nil], ['1', 1], ['2', 2], ['3', 3], ['4', 4], ['5', 5] ], @review.rating || "Select Rating") %>
+  <br>
+    <%= f.label :body, "Write Review" %>
+    <%= f.text_area :body %>
+
+    <%= f.submit @review.persisted? ? "Update Review" : "Submit Review" %>
+  
+  </p>
+<% end %>

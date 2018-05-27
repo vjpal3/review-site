@@ -1,0 +1,7 @@
+<% if user_signed_in? %>
+  <h4>Update Review</h4>
+  <p><strong>Item: </strong><%= @review.item.name %><br>
+    <%= @review.item.description %>
+  </p>
+  <%= render '/reviews/form' %>
+<% end %>
