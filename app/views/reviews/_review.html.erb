@@ -1,0 +1,13 @@
+<p><strong>Rating:</strong> <%= review.rating %>
+  <br>
+  <% if review.body %>
+    <strong>Review:</strong> <%= review.body %>
+  <% end %>
+  <br>
+  <% if user_signed_in? %>
+    <%= link_to "Update Review", edit_review_path(review) %> |
+    <%= link_to 'Delete Review', review_path(review),
+                  method: :delete,
+                  data: { confirm: 'Are you sure?' } %> |
+  <% end %>
+</p>

@@ -7,6 +7,9 @@ class ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
+    # Following line is required, otherwise, ActionView::Template::Error:
+    #   First argument in form cannot contain nil or be empty
+    @review = @item.reviews.build(params[:review])
   end
 
   def new

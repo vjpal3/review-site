@@ -1,16 +1,14 @@
 require "rails_helper"
 
-feature "User deletes an item", %Q{
+feature "User delete review", %Q{
   As an authenticated user
-  I want to delete an item
-  So that no one can review it
+  I want to delete a review
+  So that no one can see it
 } do
 
   # Acceptance Criteria
-  # - I must be signed in to delete the item
-  # - I must be able delete the item from the item edit page
+  # - I must be signed in to delete the review
   # - I must be able delete the item from the item details page
-  # - All the review for that item must get deleted.
 
   before(:each) do
     @user = FactoryBot.create(:user)
@@ -30,26 +28,19 @@ feature "User deletes an item", %Q{
     FactoryBot.create(:review, user_id: @user.id, item_id: item.id)
   end
 
-  scenario 'authenticated user deletes an item from item detail page' do
+  scenario "authenticated user deletes a review" do
     visit "/"
     find_link("#{item.name}").click
-    find_link("Delete Item").click
-    expect(page).to_not have_content(item.name)
+    find_link("Delete Review").click
+    expect(page).to_not have_content("Rating: #{review_1.rating}")
+    expect(page).to_not have_content("Review: #{review_1.body}")
   end
 
-  scenario 'authenticated user deletes an item from item edit page' do
-    visit "/"
-    find_link("#{item.name}").click
-    find_link("Update Item").click
-    find_button("Delete Item").click
-    expect(page).to_not have_content(item.name)
-  end
-
-  scenario "unauthenticated user attempts to delete an item" do
+  scenario "unauthenticated user attempts to delete a review" do
     find_link("Sign Out").click
     visit "/"
     find_link("#{item.name}").click
-
-    expect(page).to_not have_link("Delete Item")
+    expect(page).to_not have_link("Delete Review")
   end
+
 end
